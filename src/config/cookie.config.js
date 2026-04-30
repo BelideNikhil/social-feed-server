@@ -1,6 +1,6 @@
 export const cookieConfig = {
   httpOnly: true, // Prevents JS access (XSS protection)
-  sameSite: "none", // Only sends over HTTPS
+  sameSite: process.env.NODE_ENV === "production" ? "none" : "lax", // Only sends over HTTPS
   secure: process.env.NODE_ENV === "production", // Prevents CSRF (Cross-Site Request Forgery)
   path: "/", // Always explicitly set path to avoid route-specific cookies (default path is "/")
   // Add this to persist the cookie (e.g., for 7 days)
